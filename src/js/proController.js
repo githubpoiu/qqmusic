@@ -27,7 +27,7 @@
         function func() {
             var per = 0;
             if(audio.buffered.length) {
-                per = audio.buffered.end(0) / duration;
+                per = audio.buffered.end(audio.buffered.length-1) / duration;
                 $('.pro-load').css({width: per*100 +'%'});
             }
             timer = requestAnimationFrame(func);
