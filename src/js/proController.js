@@ -6,10 +6,10 @@
         !audio && (audio = root.audio);
         duration = audio.duration;
         renderAllTime();
+        updateBuffered();
         audio.addEventListener('canplay', function () {
             duration = audio.duration;
             renderAllTime();
-            updateBuffered();
         })
     }
 

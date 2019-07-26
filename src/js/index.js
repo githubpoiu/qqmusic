@@ -31,10 +31,8 @@ function getData(url) {
 
 getData('../mock/data.json');
 
-document.onreadystatechange = function () {
-    if(document.readyState = 'complete') {
-        $('.loading').hide();
-    }
+window.onload = function () {
+    $('.loading').hide();
 }
 
 function bindEvent() {
@@ -95,6 +93,7 @@ function bindEvent() {
         if(audio.paused) {
             stopRun();
             $('.play').removeClass('playing');
+            
             rotate.stop();
         }else{
             startRun();
