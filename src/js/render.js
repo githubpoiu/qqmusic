@@ -1,16 +1,13 @@
 (function ($, root) {
-    var renderDefaultImg = function () {
-        var defaultImg = new Image();
-        var src = '../image/default.gif';
-        defaultImg.src = src;
+    var renderLoading = function () {
+        new Image('../image/icon-pause.png');
         return function () {
-            $('.img-box img').attr('src', src);
-            root.blurImg(defaultImg, $('.wrapper'));
+            $('.img-box img').attr('src', '../image/default.gif');
+            $('.wrapper').css('background-image', 'url(../image/bg.png)');
         }
     }();
     
     function renderImg(src) {
-        renderDefaultImg();
         var img = new Image();
         img.onload = function () {
             $('.img-box img').attr('src',src);
@@ -19,7 +16,7 @@
         img.src = src;
     }
 
-    function renderInfo(info) {
+    function renderInfo(info, index) {
         var temp = '<div class="title">'+info.song+'</div>\
                 <div class="author">'+info.singer+'</div>';
         $('.song-info').html(temp);
@@ -43,8 +40,9 @@
     }
     root.render = function(song, index, songList) {
         songList && renderList(songList);
-        renderImg(song.image);
         renderInfo(song, index);
+        renderLoading();
+        renderImg(song.image);
         renderIsLike(song.isLike);
     }
 })(window.Zepto, window.player || (window.player = {}))
