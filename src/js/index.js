@@ -29,7 +29,7 @@ function getData(url) {
     })
 }
 
-getData('https://githubpoiu.github.io/qqmusic/source/data.json');
+getData('/source/data.json');
 
 window.onload = function () {
     $('.loading').hide();
