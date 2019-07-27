@@ -1,5 +1,16 @@
 (function ($, root) {
+    var renderDefaultImg = function () {
+        var defaultImg = new Image();
+        var src = '../image/default.gif';
+        defaultImg.src = src;
+        return function () {
+            $('.img-box img').attr('src', src);
+            root.blurImg(defaultImg, $('.wrapper'));
+        }
+    }();
+    
     function renderImg(src) {
+        renderDefaultImg();
         var img = new Image();
         img.onload = function () {
             $('.img-box img').attr('src',src);

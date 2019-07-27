@@ -29,7 +29,7 @@ function getData(url) {
     })
 }
 
-getData('/source/data.json');
+getData('https://githubpoiu.github.io/qqmusic/source/data.json');
 
 window.onload = function () {
     $('.loading').hide();
@@ -137,8 +137,8 @@ function bindEvent() {
     })
     // 切换歌曲
     function switchSong () {
-        audioManager.loadAudio(songList[index].audio);
         render(songList[index], index);
+        audioManager.loadAudio(songList[index].audio);
         proController.updateBuffered();
         audio.play();
         playStatusChangeHandle({deg:0});
