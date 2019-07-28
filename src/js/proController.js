@@ -60,6 +60,7 @@
         init: init,
         updateByAudio: updateByAudio,
         updateByPer: updateByPer,
-        updateBuffered: updateBuffered
+        updateBuffered: updateBuffered,
+        renderAllTime: renderAllTime
     }
 })(window.Zepto, window.player || (window.player={}))
