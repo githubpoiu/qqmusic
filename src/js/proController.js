@@ -48,9 +48,11 @@
         var second = time % 60;
         minute < 10 && (minute = '0' + minute);
         second < 10 && (second = '0' + second);
-        var res = minute + ':' + second;
-        isNaN(res) && (res = '00:00');
-        return res;
+        if(isNaN(minute) || isNaN(second)) {
+            return '00:00';
+        }else {
+            return minute + ':' + second
+        }
     }
 
     root.proController = {
