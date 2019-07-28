@@ -42,7 +42,7 @@ gulp.task('image', function () {
 
 gulp.task('server', function () {
     connect.server({
-        port: '8081',
+        port: '9091',
         livereload: true
     })
 })
