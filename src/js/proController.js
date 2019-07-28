@@ -42,13 +42,15 @@
         $('.pro-top').css({width: per*100 +'%'});
     }
     
-    function formatTime(t) {
-        t = Math.round(t);
-        var m = Math.floor(t / 60);
-        var s = t % 60;
-        m < 10 && (m = '0' + m);
-        s < 10 && (s = '0' + s);
-        return m + ':' + s;
+    function formatTime(time) {
+        time = Math.round(time);
+        var minute = Math.floor(time / 60);
+        var second = time % 60;
+        minute < 10 && (minute = '0' + minute);
+        second < 10 && (second = '0' + second);
+        var res = minute + ':' + second;
+        isNaN(res) && (res = '00:00');
+        return res;
     }
 
     root.proController = {
