@@ -33,7 +33,6 @@ gulp.task('js', function () {
         .pipe(gulp.dest('dist/js/'))
 })
 
-
 gulp.task('image', function () {
     gulp.src('src/image/*')
         .pipe(connect.reload())

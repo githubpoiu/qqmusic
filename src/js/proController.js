@@ -1,33 +1,29 @@
 (function ($, root) {
-    var duration,
-        audio = root.audio,
+    var audio,
         timer = -1;
-    function init() {
-        !audio && (audio = root.audio);
-        duration = audio.duration;
-        renderAllTime();
-        updateBuffered();
-        audio.addEventListener('canplay', function () {
-            duration = audio.duration;
+    function init(initAudio) {
+        audio = initAudio;
+        audio.addEventListener('durationchange', function () {
             renderAllTime();
         })
+        audio.load();
     }
-
+    
     function renderAllTime() {
-        var time = formatTime(duration);
+        var time = formatTime(audio.duration);
         $('.all-time').html(time);
     }
 
     function renderCurTime (per) {
-        var time = formatTime(per * duration);
+        var time = formatTime(per * audio.duration);
         $('.cur-time').html(time);
     }
 
     function updateBuffered() {
+        var per = 0;
         function func() {
-            var per = 0;
             if(audio.buffered.length) {
-                per = audio.buffered.end(audio.buffered.length-1) / duration;
+                per = audio.buffered.end(audio.buffered.length-1) / audio.duration;
                 $('.pro-load').css({width: per*100 +'%'});
             }
             timer = requestAnimationFrame(func);
@@ -37,7 +33,7 @@
     }
 
     function updateByAudio() {
-        var per = audio.currentTime / duration;
+        var per = audio.currentTime / audio.duration;
         updateByPer(per);
     }
 
@@ -50,10 +46,11 @@
         t = Math.round(t);
         var m = Math.floor(t / 60);
         var s = t % 60;
-        m = m < 10 ? '0'+ m: m;
-        s = s < 10 ? '0'+ s: s;
+        m < 10 && (m = '0' + m);
+        s < 10 && (s = '0' + s);
         return m + ':' + s;
     }
+
     root.proController = {
         init: init,
         updateByAudio: updateByAudio,

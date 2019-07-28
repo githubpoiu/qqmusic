@@ -7,7 +7,7 @@ var audio = null;
 var songList = [];
 var index = 0;
 var len = 0;
-var timer = -1;
+var frameTimer = -1;
 // 获取数据
 function getData(url) {
     $.ajax({
@@ -20,7 +20,7 @@ function getData(url) {
             render(songList[0], index, songList);
             audioManager = new root.AudioManager(songList[index].audio);
             root.audio = audio = audioManager.audio;
-            proController.init();
+            proController.init(audio);
             bindEvent();
         },
         error: function () {
@@ -32,7 +32,7 @@ function getData(url) {
 getData('/source/data.json');
 
 window.onload = function () {
-    $('.loading').hide();
+    setTimeout(function () {$('.loading').hide();},800)
 }
 
 function bindEvent() {
@@ -77,14 +77,18 @@ function bindEvent() {
     // 根据音乐播放驱动进度条
     function startRun() {
         stopRun();
-        timer = setInterval(function () {
+        function run() {
+            rotate.updateDeg();
             proController.updateByAudio();
             audio.ended && $('.next').trigger('click');
-        }, 1000 / 60);
+
+            frameTimer = requestAnimationFrame(run);
+        }
+        run();
     }
     // 停止驱动进度条
     function stopRun() {
-        clearInterval(timer);
+        cancelAnimationFrame(frameTimer);
     }
     // 根据播放状态集中改变相关逻辑
     function playStatusChangeHandle(config) {
@@ -93,12 +97,10 @@ function bindEvent() {
         if(audio.paused) {
             stopRun();
             $('.play').removeClass('playing');
-            
-            rotate.stop();
         }else{
             startRun();
             $('.play').addClass('playing');
-            deg != undefined ? rotate.run(deg) : rotate.run();
+            deg != undefined && rotate.setDeg(deg);
         }
     }
     // 按钮事件
@@ -131,7 +133,6 @@ function bindEvent() {
     })
     // 列表点击切换歌曲
     $('.song-item').on('click', function (e) {
-        $('.song-list').addClass('show');
         index = $(this).index();
         switchSong();
     })
@@ -139,8 +140,8 @@ function bindEvent() {
     function switchSong () {
         render(songList[index], index);
         audioManager.loadAudio(songList[index].audio);
-        proController.updateBuffered();
         audio.play();
+        proController.updateBuffered();
         playStatusChangeHandle({deg:0});
     }
 }

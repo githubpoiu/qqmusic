@@ -1,5 +1,4 @@
 (function ($, root) {
-
     function AudioManager(src) {
         this.audio = new Audio();
         this.audio.src = src;
@@ -19,10 +18,11 @@
             this.audio.src = src;
         },
         playByPer: function (per) {
-            this.audio.currentTime = per * this.audio.duration;
+            var duration = this.audio.duration;
+            !isNaN(duration) && (this.audio.currentTime = per * duration);
         }
     }
 
     root.AudioManager = AudioManager;
-
+    
 })(window.Zepto, window.player || (window.player={}))
