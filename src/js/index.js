@@ -100,7 +100,7 @@ function bindEvent() {
         }else{
             startRun();
             $('.play').addClass('playing');
-            deg != undefined && rotate.setDeg(deg);
+            deg != undefined && rotate.updateDeg(0);
         }
     }
     // 按钮事件

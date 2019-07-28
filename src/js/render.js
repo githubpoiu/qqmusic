@@ -2,7 +2,7 @@
     var renderLoading = function () {
         new Image().src = '../image/icon-pause.png';
         return function () {
-            $('.img-box img').attr('src', '../image/loading.gif');
+            $('.img-loading').show();
             $('.wrapper').css('background-image', 'url(../image/bg.jpg)');
         }
     }();
@@ -11,6 +11,7 @@
         var img = new Image();
         img.onload = function () {
             $('.img-box img').attr('src',src);
+            $('.img-loading').hide();
             root.blurImg(img, $('.wrapper'));
         }
         img.src = src;
