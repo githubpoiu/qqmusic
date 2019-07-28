@@ -9,7 +9,7 @@
         updateDeg: function(deg) {
             deg != undefined && (this.deg = deg);
             $('.img-box').css({transform:'rotate('+this.deg+'deg)'});
-            this.deg = (this.deg + .2) % 360;
+            this.deg = (this.deg + .3) % 360;
         }
     }
 

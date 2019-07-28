@@ -1,1 +1,1 @@
-!function(e,t){function i(){this.deg=0,this.timer=-1}i.prototype={updateDeg:function(t){null!=t&&(this.deg=t),e(".img-box").css({transform:"rotate("+this.deg+"deg)"}),this.deg=(this.deg+.2)%360}},t.rotate=new i}(window.Zepto,window.player||(window.player={}));
+!function(e,t){function i(){this.deg=0,this.timer=-1}i.prototype={updateDeg:function(t){null!=t&&(this.deg=t),e(".img-box").css({transform:"rotate("+this.deg+"deg)"}),this.deg=(this.deg+.3)%360}},t.rotate=new i}(window.Zepto,window.player||(window.player={}));
