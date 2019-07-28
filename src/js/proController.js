@@ -22,10 +22,8 @@
     function updateBuffered() {
         var per = 0;
         function func() {
-            if(audio.buffered.length) {
-                per = audio.buffered.end(audio.buffered.length-1) / audio.duration;
-                $('.pro-load').css({width: per*100 +'%'});
-            }
+            audio.buffered.length && (per = audio.buffered.end(audio.buffered.length-1) / audio.duration);
+            $('.pro-load').css({width: per*100 +'%'});
             timer = requestAnimationFrame(func);
             per==1 && cancelAnimationFrame(timer);
         }
