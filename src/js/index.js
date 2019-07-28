@@ -78,8 +78,8 @@ function bindEvent() {
     function startRun() {
         stopRun();
         function run() {
-            rotate.updateDeg();
             proController.updateByAudio();
+            audio.readyState >= 3 && rotate.updateDeg();
             audio.ended && $('.next').trigger('click');
 
             frameTimer = requestAnimationFrame(run);
