@@ -1,4 +1,7 @@
 (function ($, root) {
+
+    var img = new Image();
+
     var renderLoading = function () {
         new Image().src = '../image/icon-pause.png';
         return function () {
@@ -8,7 +11,6 @@
     }();
     
     function renderImg(src) {
-        var img = new Image();
         img.onload = function () {
             $('.img-box img').attr('src',src);
             $('.img-loading').hide();
@@ -31,6 +33,7 @@
             $('.like').removeClass('liking');
         }
     }
+
     function renderList (songList) {
         var str = '';
         $('.list-title').text('歌曲列表('+ songList.length +'首)');
@@ -39,6 +42,7 @@
         });
         $('ul.list').html(str);
     }
+
     root.render = function(song, index, songList) {
         songList && renderList(songList);
         renderInfo(song, index);
@@ -46,4 +50,5 @@
         renderImg(song.image);
         renderIsLike(song.isLike);
     }
+    
 })(window.Zepto, window.player || (window.player = {}))
