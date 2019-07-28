@@ -2,8 +2,8 @@
     var renderLoading = function () {
         new Image().src = '../image/icon-pause.png';
         return function () {
-            $('.img-box img').attr('src', '../image/default.gif');
-            $('.wrapper').css('background-image', 'url(../image/bg.png)');
+            $('.img-box img').attr('src', '../image/loading.gif');
+            $('.wrapper').css('background-image', 'url(../image/bg.jpg)');
         }
     }();
     
