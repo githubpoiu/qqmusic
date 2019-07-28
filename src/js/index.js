@@ -140,8 +140,8 @@ function bindEvent() {
     function switchSong () {
         render(songList[index], index);
         audioManager.loadAudio(songList[index].audio);
-        audio.play();
         proController.updateBuffered();
+        audio.play();
         playStatusChangeHandle({deg:0});
     }
 }

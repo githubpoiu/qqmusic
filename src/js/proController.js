@@ -34,6 +34,7 @@
 
     function updateByAudio() {
         var per = audio.currentTime / audio.duration;
+        isNaN(per) && (per = 0);
         updateByPer(per);
     }
 
